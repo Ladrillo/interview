@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Card.css';
 
 
-export default function Card({ name, image, birthday, planet }) {
+export default function Card({ name, image, birthday, homeworld }) {
     return (
         <div className='card'>
             <div className='card-content'>
@@ -14,7 +14,7 @@ export default function Card({ name, image, birthday, planet }) {
                 </p>
                 <p>
                     <span>Homeworld:</span>
-                    <span>Tatooine</span>
+                    <span>{homeworld}</span>
                 </p>
             </div>
         </div>

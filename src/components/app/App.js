@@ -26,9 +26,11 @@ class App extends Component {
                 {
                     people.map(person => (
                         <Card
-                            name     = { person.name }
-                            image    = { person.image }
-                            birthday = { person.birth_year }
+                            key       = { person.id }
+                            name      = { person.name }
+                            image     = { person.image }
+                            birthday  = { person.birth_year }
+                            homeworld = { person.homeworldName }
                         />
                     ))
                 }

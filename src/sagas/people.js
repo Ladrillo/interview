@@ -1,15 +1,15 @@
 import { takeLatest } from 'redux-saga/effects';
 import { call, put, select } from 'redux-saga/effects';
-import axios from 'axios';
+import plugPlanets from './services/plugPlanets';
+import { get } from './services/axios';
 
-
-function get(url) {
-    return axios.get(url);
-}
 
 function* getPeople(action) {
-    const result = yield call(get, 'http://localhost:3008/people');
-    yield put({ type: 'PEOPLE/SET', payload: result.data });
+    const page              = action.payload || 0;
+    const people            = yield call(get, `http://localhost:3008/people?_page=${page}`);
+    const peopleWithPlanets = yield call(plugPlanets, people.data);
+
+    yield put({ type: 'PEOPLE/SET', payload: peopleWithPlanets });
 }
 
 export function watchGetPeople() {
