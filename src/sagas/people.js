@@ -5,7 +5,12 @@ import { get } from './services/axios';
 
 
 function* getPeople(action) {
-    const page              = action.payload || 0;
+    const page = action.payload || 1;
+
+    if (page > 9 || page < 1) {
+        return;
+    }
+
     const people            = yield call(get, `http://localhost:3008/people?_page=${page}`);
     const peopleWithPlanets = yield call(plugPlanets, people.data);
 
