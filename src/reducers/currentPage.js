@@ -4,6 +4,8 @@ export default function currentPage(state = 1, action) {
             return state < 9 ? state + 1 : state;
         case 'CURRENT_PAGE/DECREMENT':
             return state > 1 ? state - 1 : state;
+        case 'CURRENT_PAGE/RESET':
+            return 1;
         default:
             return state;
     }

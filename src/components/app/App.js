@@ -11,8 +11,9 @@ import './App.css';
 class App extends Component {
     constructor() {
         super();
-        this.nextHandler = this.nextHandler.bind(this);
-        this.prevHandler = this.prevHandler.bind(this);
+        this.nextHandler   = this.nextHandler.bind(this);
+        this.prevHandler   = this.prevHandler.bind(this);
+        this.searchHandler = this.searchHandler.bind(this);
     }
 
     componentWillMount() {
@@ -20,23 +21,47 @@ class App extends Component {
     }
 
     nextHandler() {
-        const { currentPage } = this.props;
+        const { currentPage, searchTerm } = this.props;
 
-        this.props.dispatch({ type: 'PEOPLE/GET', payload: currentPage + 1 });
+        this.props.dispatch({
+            type: 'PEOPLE/GET',
+            page: currentPage + 1,
+            search: searchTerm
+        });
+
         this.props.dispatch({ type: 'CURRENT_PAGE/INCREMENT'});
     }
 
     prevHandler() {
-        const { currentPage } = this.props;
+        const { currentPage, searchTerm } = this.props;
 
-        this.props.dispatch({ type: 'PEOPLE/GET', payload: currentPage - 1 });
+        this.props.dispatch({
+            type: 'PEOPLE/GET',
+            page: currentPage - 1,
+            search: searchTerm
+        });
+
         this.props.dispatch({ type: 'CURRENT_PAGE/DECREMENT'});
     }
 
+    searchHandler(searchTerm) {
+        this.props.dispatch({
+            type: 'SEARCH_TERM/SET',
+            payload: searchTerm
+        });
+
+        this.props.dispatch({
+            type: 'PEOPLE/GET',
+            search: searchTerm
+        });
+
+        this.props.dispatch({ type: 'CURRENT_PAGE/RESET' });
+    }
+
     render() {
-        const { people, currentPage }      = this.props;
-        const { nextHandler, prevHandler } = this;
-        const upperLimit                   = 9;
+        const { people, currentPage } = this.props;
+        const { nextHandler, prevHandler, searchHandler } = this;
+        const upperLimit = 9;
 
         return (
             <div className='content'>
@@ -46,7 +71,7 @@ class App extends Component {
                     <img src={wars} alt='wars-logo' />
                 </div>
 
-                <SearchBar />
+                <SearchBar searchHandler={searchHandler} />
 
                 <Paginator
                     upperLimit  = {upperLimit}
@@ -74,6 +99,7 @@ function mapStateToProps(state) {
     return {
         people: state.people,
         currentPage: state.currentPage,
+        searchTerm: state.searchTerm,
     };
 }
 

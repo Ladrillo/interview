@@ -5,13 +5,18 @@ import { get } from './services/axios';
 
 
 function* getPeople(action) {
-    const page = action.payload || 1;
+    const page   = action.page   || 1;
+    const search = action.search || '';
 
     if (page > 9 || page < 1) {
         return;
     }
 
-    const people            = yield call(get, `http://localhost:3008/people?_page=${page}`);
+    const people = yield call(
+        get,
+        `http://localhost:3008/people?_page=${page}&q=${search}`
+    );
+
     const peopleWithPlanets = yield call(plugPlanets, people.data);
 
     yield put({ type: 'PEOPLE/SET', payload: peopleWithPlanets });
