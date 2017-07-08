@@ -13,6 +13,8 @@ class App extends Component {
     }
 
     render() {
+        const { people } = this.props;
+
         return (
             <div className='content'>
                 <div className='logo'>
@@ -21,10 +23,24 @@ class App extends Component {
                     <img src={wars} alt='wars-logo' />
                 </div>
                 <SearchBar />
-                <Card />
+                {
+                    people.map(person => (
+                        <Card
+                            name     = { person.name }
+                            image    = { person.image }
+                            birthday = { person.birth_year }
+                        />
+                    ))
+                }
             </div>
         );
     }
 }
 
-export default connect(() => ({}))(App);
+function mapStateToProps(state) {
+    return {
+        people: state.people,
+    };
+}
+
+export default connect(mapStateToProps)(App);
