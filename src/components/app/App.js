@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from '../card/Card.js';
+import EditableCard from '../editable_card/EditableCard';
 import SearchBar from '../search_bar/SearchBar.js';
 import Paginator from '../paginator/Paginator';
 import star from '../../images/star.svg';
@@ -14,6 +15,9 @@ class App extends Component {
         this.nextHandler   = this.nextHandler.bind(this);
         this.prevHandler   = this.prevHandler.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
+        this.editHandler   = this.editHandler.bind(this);
+        this.saveHandler   = this.saveHandler.bind(this);
+        this.cancelHandler = this.cancelHandler.bind(this);
     }
 
     componentWillMount() {
@@ -58,12 +62,35 @@ class App extends Component {
         this.props.dispatch({ type: 'CURRENT_PAGE/RESET' });
     }
 
+    editHandler(id) {
+        console.log(`editing this id -> ${id}`);
+        this.props.dispatch({ type: 'PERSON/ENTER_EDIT_MODE', payload: id });
+    }
+
+    saveHandler(id) {
+        console.log('saving...');
+        this.props.dispatch({ type: 'PERSON/EXIT_EDIT_MODE', payload: id });
+    }
+
+    cancelHandler(id) {
+        console.log('canceling...');
+        this.props.dispatch({ type: 'PERSON/EXIT_EDIT_MODE', payload: id });
+    }
+
     render() {
-        const { people, currentPage } = this.props;
-        const { nextHandler, prevHandler, searchHandler } = this;
-        const upperLimit = 9;
+        const { people, currentPage, editablePeople } = this.props;
+
+        const {
+            nextHandler,
+            prevHandler,
+            searchHandler,
+            editHandler,
+            saveHandler,
+            cancelHandler,
+        } = this;
 
         return (
+
             <div className='content'>
                 <div className='logo'>
                     <img src={star} alt='star-logo' />
@@ -74,21 +101,36 @@ class App extends Component {
                 <SearchBar searchHandler={searchHandler} />
 
                 <Paginator
-                    upperLimit  = {upperLimit}
                     currentPage = {currentPage}
                     onNext      = {nextHandler}
                     onPrev      = {prevHandler}
                 />
+
                 {
-                    people.map(person => (
-                        <Card
-                            key       = {person.id}
-                            name      = {person.name}
-                            image     = {person.image}
-                            birthday  = {person.birth_year}
-                            homeworld = {person.homeworldName}
-                        />
-                    ))
+                    people.map(person => {
+                        return editablePeople.indexOf(person.id) > -1
+                        ?
+                            <EditableCard
+                                key       = {person.id}
+                                id        = {person.id}
+                                name      = {person.name}
+                                image     = {person.image}
+                                birthday  = {person.birth_year}
+                                homeworld = {person.homeworldName}
+                                onSave    = {saveHandler}
+                                onCancel  = {cancelHandler}
+                            />
+                        :
+                            <Card
+                                key       = {person.id}
+                                id        = {person.id}
+                                name      = {person.name}
+                                image     = {person.image}
+                                birthday  = {person.birth_year}
+                                homeworld = {person.homeworldName}
+                                onEdit    = {editHandler}
+                            />;
+                    })
                 }
             </div>
         );
@@ -97,9 +139,10 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        people: state.people,
-        currentPage: state.currentPage,
-        searchTerm: state.searchTerm,
+        people:         state.people,
+        currentPage:    state.currentPage,
+        searchTerm:     state.searchTerm,
+        editablePeople: state.editablePeople,
     };
 }
 

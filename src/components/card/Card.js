@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Card.css';
 
 
-export default function Card({ name, image, birthday, homeworld }) {
+export default function Card({ id, name, image, birthday, homeworld, onEdit }) {
     return (
         <div className='card'>
             <div className='card-content'>
@@ -17,6 +17,7 @@ export default function Card({ name, image, birthday, homeworld }) {
                     <span>{homeworld}</span>
                 </p>
             </div>
+            <div onClick={() => onEdit(id)}>edit</div>
         </div>
     );
 }
