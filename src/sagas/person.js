@@ -7,10 +7,10 @@ function* updatePerson(action) {
     const state = yield select();
     const { currentPage } = state;
 
-    const { id, name, birthday } = action.payload;
+    const { id, name, birthday, homeworld } = action.payload;
     const url = `http://localhost:3008/people/${id}`;
 
-    const response = yield call(patch, url, { name, birth_year: birthday });
+    const response = yield call(patch, url, { name, homeworld, birth_year: birthday });
 
     if (response.status != 200) {
         alert('Something went wrong');

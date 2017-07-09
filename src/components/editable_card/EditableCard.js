@@ -22,15 +22,15 @@ export default class EditableCard extends Component {
     }
 
     save(e) {
-        const { name, birthday } = this.state;
-        const { id, onSave }     = this.props;
+        const { name, birthday, homeworld } = this.state;
+        const { id, onSave }                = this.props;
 
         if (! name || ! birthday) {
             alert('missing required fields');
             return;
         }
 
-        onSave({ id, name, birthday });
+        onSave({ id, name, birthday, homeworld });
     }
 
     cancel(e) {

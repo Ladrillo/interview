@@ -69,10 +69,10 @@ class App extends Component {
         });
     }
 
-    saveHandler({ id, name, birthday }) {
+    saveHandler({ id, name, birthday, homeworld }) {
         this.props.dispatch({
             type: 'PERSON/SAVE',
-            payload: { id, name, birthday }
+            payload: { id, name, birthday, homeworld }
         });
     }
 
