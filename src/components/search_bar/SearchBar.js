@@ -16,7 +16,7 @@ export default class SearchBar extends Component {
     }
 
     componentDidMount() {
-        // we only want to AJAX  after 250 milliseconds of 'radio silence'
+        // we only want to AJAX after 250 milliseconds of 'radio silence'
         const input = document.querySelector('.search-bar-input');
         const { searchHandler } = this.props;
 

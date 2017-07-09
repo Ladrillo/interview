@@ -1,6 +1,8 @@
 import { takeLatest } from 'redux-saga/effects';
 import { call, put, select } from 'redux-saga/effects';
 import plugPlanets from './services/plugPlanets';
+import searchPlanets from './services/searchPlanets';
+import buildUrl from './services/buildUrl';
 import { get } from './services/axios';
 
 
@@ -12,10 +14,9 @@ function* getPeople(action) {
         return;
     }
 
-    const people = yield call(
-        get,
-        `http://localhost:3008/people?_page=${page}&q=${search}`
-    );
+    const planetIds = yield call(searchPlanets, search);
+    const url       = yield call(buildUrl, page, search, planetIds);
+    const people    = yield call(get, url);
 
     const peopleWithPlanets = yield call(plugPlanets, people.data);
 
