@@ -22,6 +22,7 @@ class App extends Component {
 
     componentWillMount() {
         this.props.dispatch({ type: 'PEOPLE/GET' });
+        this.props.dispatch({ type: 'FAVORITES/GET' });
     }
 
     nextHandler() {
