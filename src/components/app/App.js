@@ -63,17 +63,20 @@ class App extends Component {
     }
 
     editHandler(id) {
-        console.log(`editing this id -> ${id}`);
-        this.props.dispatch({ type: 'PERSON/ENTER_EDIT_MODE', payload: id });
+        this.props.dispatch({
+            type: 'PERSON/ENTER_EDIT_MODE',
+            payload: id
+        });
     }
 
-    saveHandler(id) {
-        console.log('saving...');
-        this.props.dispatch({ type: 'PERSON/EXIT_EDIT_MODE', payload: id });
+    saveHandler({ id, name, birthday }) {
+        this.props.dispatch({
+            type: 'PERSON/SAVE',
+            payload: { id, name, birthday }
+        });
     }
 
     cancelHandler(id) {
-        console.log('canceling...');
         this.props.dispatch({ type: 'PERSON/EXIT_EDIT_MODE', payload: id });
     }
 
