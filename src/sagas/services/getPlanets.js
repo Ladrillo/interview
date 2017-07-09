@@ -1,7 +1,11 @@
 import { call, put, select } from 'redux-saga/effects';
 import { get } from './axios';
 
-
+/**
+ * Pulls a list of planets either from the store, or the API
+ *
+ * @return {Object} an array of planets
+ */
 export default function* getPlanets() {
     const state = yield select();
     let planets = state.planets;

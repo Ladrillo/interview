@@ -14,10 +14,9 @@ function* getPeople(action) {
         return;
     }
 
-    const planetIds = yield call(searchPlanets, search);
-    const url       = yield call(buildUrl, page, search, planetIds);
-    const people    = yield call(get, url);
-
+    const planetIds         = yield call(searchPlanets, search);
+    const url               = yield call(buildUrl, page, search, planetIds);
+    const people            = yield call(get, url);
     const peopleWithPlanets = yield call(plugPlanets, people.data);
 
     yield put({ type: 'PEOPLE/SET', payload: peopleWithPlanets });

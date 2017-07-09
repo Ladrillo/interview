@@ -2,6 +2,12 @@ import { call, put, select } from 'redux-saga/effects';
 import getPlanets from './getPlanets';
 
 
+/**
+ * Resolves the ids of the planets whose names match against a search term
+ *
+ * @param {string} search term
+ * @return {Object} an array of planet ids
+ */
 export default function* searchPlanets(searchTerm) {
     if (! searchTerm) {
         return [];
