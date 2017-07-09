@@ -17,9 +17,11 @@ export default styled.div`
         justify-content:  center;
         align-items:      center;
         cursor:           pointer;
+        transition: 0.2s 0.02s ease-in-out;
 
         &:hover {
             background-color: #494949;
+            transition: 0.2s 0.02s ease-in-out;
         }
     }
 `;
