@@ -104,7 +104,6 @@ class App extends Component {
                 <SearchBar searchHandler={searchHandler} />
 
                 <Paginator
-                    currentPage = {currentPage}
                     onNext      = {nextHandler}
                     onPrev      = {prevHandler}
                 />

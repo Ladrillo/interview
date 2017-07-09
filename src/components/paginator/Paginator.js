@@ -1,39 +1,13 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import Styled from '../../styled/paginator';
 
 
-export default function Paginator({ upperLimit, onPrev, onNext, currentPage }) {
-    const nextActive = currentPage < upperLimit;
-    const prevActive = currentPage > 1;
-
+// TO-DO: make it smarter so it knows when to disable the buttons
+export default function Paginator({ onPrev, onNext }) {
     return (
-        <Styled className='paginator' nextActive={nextActive} prevActive={prevActive}>
+        <Styled className='paginator'>
             <div onClick={onPrev} className='paginator-button prev'>Prev</div>
             <div onClick={onNext} className='paginator-button next'>Next</div>
         </Styled>
     );
 }
-
-const Styled = styled.div`
-    width:           100%;
-    display:         flex;
-    justify-content: space-around;
-    align-items:     center;
-    margin-bottom:   20px;
-
-
-    .paginator-button {
-        border-radius:    4px;
-        width:            80px;
-        height:           30px;
-        background-color: #222;
-        display:          flex;
-        justify-content:  center;
-        align-items:      center;
-        cursor:           pointer;
-
-        &:hover {
-            background-color: #494949;
-        }
-    }
-`;
