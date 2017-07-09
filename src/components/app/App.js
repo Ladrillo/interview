@@ -81,7 +81,7 @@ class App extends Component {
     }
 
     render() {
-        const { people, currentPage, editablePeople } = this.props;
+        const { people, planets, currentPage, editablePeople } = this.props;
 
         const {
             nextHandler,
@@ -114,14 +114,16 @@ class App extends Component {
                         return editablePeople.indexOf(person.id) > -1
                         ?
                             <EditableCard
-                                key       = {person.id}
-                                id        = {person.id}
-                                name      = {person.name}
-                                image     = {person.image}
-                                birthday  = {person.birth_year}
-                                homeworld = {person.homeworldName}
-                                onSave    = {saveHandler}
-                                onCancel  = {cancelHandler}
+                                key           = {person.id}
+                                id            = {person.id}
+                                name          = {person.name}
+                                image         = {person.image}
+                                birthday      = {person.birth_year}
+                                homeworldName = {person.homeworldName}
+                                homeworldId   = {person.homeworld}
+                                onSave        = {saveHandler}
+                                onCancel      = {cancelHandler}
+                                planets       = {planets}
                             />
                         :
                             <Card
@@ -146,6 +148,7 @@ function mapStateToProps(state) {
         currentPage:    state.currentPage,
         searchTerm:     state.searchTerm,
         editablePeople: state.editablePeople,
+        planets:        state.planets.map(p => ({ name: p.name, id: p.id }))
     };
 }
 

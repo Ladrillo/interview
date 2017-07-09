@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StyledButton from '../../styled/button';
+import Dropdown from '../dropdown/Dropdown';
 import './EditableCard.css';
 
 
@@ -8,14 +9,16 @@ export default class EditableCard extends Component {
         super(props);
 
         this.state = {
-            name:     this.props.name,
-            birthday: this.props.birthday,
+            name:      this.props.name,
+            birthday:  this.props.birthday,
+            homeworld: this.props.homeworldId,
         };
 
-        this.save           = this.save.bind(this);
-        this.cancel         = this.cancel.bind(this);
-        this.changeName     = this.changeName.bind(this);
-        this.changeBirthday = this.changeBirthday.bind(this);
+        this.save            = this.save.bind(this);
+        this.cancel          = this.cancel.bind(this);
+        this.changeName      = this.changeName.bind(this);
+        this.changeBirthday  = this.changeBirthday.bind(this);
+        this.changeHomeworld = this.changeHomeworld.bind(this);
     }
 
     save(e) {
@@ -42,10 +45,14 @@ export default class EditableCard extends Component {
         this.setState({ birthday: e.target.value });
     }
 
+    changeHomeworld(e) {
+        this.setState({ homeworld: e.target.value });
+    }
+
     render() {
-        const { changeName, changeBirthday, save, cancel } = this;
-        const { image, homeworld }                         = this.props;
-        const { name, birthday }                           = this.state;
+        const { changeName, changeBirthday, changeHomeworld, save, cancel } = this;
+        const { image, homeworldName, homeworldId, planets }                = this.props;
+        const { name, birthday, homeworld }                                 = this.state;
 
         return (
             <div className='card'>
@@ -68,7 +75,13 @@ export default class EditableCard extends Component {
                     </p>
                     <p>
                         <span>Homeworld:</span>
-                        <span>{homeworld}</span>
+                        <span>
+                            <Dropdown
+                                options       = {planets}
+                                value         = {homeworld}
+                                changeHandler = {changeHomeworld}
+                            />
+                        </span>
                     </p>
                 </div>
                 <div className='card-buttons'>
