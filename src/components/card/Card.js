@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StyledButton from '../../styled/button';
 import './Card.css';
 
 
@@ -17,7 +18,9 @@ export default function Card({ id, name, image, birthday, homeworld, onEdit }) {
                     <span>{homeworld}</span>
                 </p>
             </div>
-            <div onClick={() => onEdit(id)}>edit</div>
+            <div className='card-buttons'>
+                <StyledButton onClick={() => onEdit(id)}>edit</StyledButton>
+            </div>
         </div>
     );
 }

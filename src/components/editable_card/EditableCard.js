@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StyledButton from '../../styled/button';
 import './EditableCard.css';
 
 
@@ -70,8 +71,10 @@ export default class EditableCard extends Component {
                         <span>{homeworld}</span>
                     </p>
                 </div>
-                <div onClick={save}>save</div>
-                <div onClick={cancel}>cancel</div>
+                <div className='card-buttons'>
+                    <StyledButton className='save-button' onClick={save}>save</StyledButton>
+                    <StyledButton className='cancel-button' onClick={cancel}>cancel</StyledButton>
+                </div>
             </div>
         );
     }

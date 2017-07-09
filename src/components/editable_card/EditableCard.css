@@ -36,3 +36,9 @@
 .card p span{
 	margin: 0 10px;
 }
+
+.card-buttons {
+	display: flex;
+	justify-content: space-around;
+	padding-bottom: 15px;
+}
