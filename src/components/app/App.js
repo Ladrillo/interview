@@ -18,6 +18,7 @@ class App extends Component {
         this.editHandler   = this.editHandler.bind(this);
         this.saveHandler   = this.saveHandler.bind(this);
         this.cancelHandler = this.cancelHandler.bind(this);
+        this.postFavorites = this.postFavorites.bind(this);
     }
 
     componentWillMount() {
@@ -78,11 +79,27 @@ class App extends Component {
     }
 
     cancelHandler(id) {
-        this.props.dispatch({ type: 'PERSON/EXIT_EDIT_MODE', payload: id });
+        this.props.dispatch({
+            type: 'PERSON/EXIT_EDIT_MODE',
+            payload: id
+        });
+    }
+
+    postFavorites(id) {
+        this.props.dispatch({
+            type: 'FAVORITES/POST',
+            payload: id
+        });
     }
 
     render() {
-        const { people, planets, currentPage, editablePeople } = this.props;
+        const {
+            people,
+            planets,
+            favorites,
+            currentPage,
+            editablePeople,
+        } = this.props;
 
         const {
             nextHandler,
@@ -91,6 +108,7 @@ class App extends Component {
             editHandler,
             saveHandler,
             cancelHandler,
+            postFavorites,
         } = this;
 
         return (
@@ -127,13 +145,15 @@ class App extends Component {
                             />
                         :
                             <Card
-                                key       = {person.id}
-                                id        = {person.id}
-                                name      = {person.name}
-                                image     = {person.image}
-                                birthday  = {person.birth_year}
-                                homeworld = {person.homeworldName}
-                                onEdit    = {editHandler}
+                                key         = {person.id}
+                                id          = {person.id}
+                                name        = {person.name}
+                                image       = {person.image}
+                                birthday    = {person.birth_year}
+                                homeworld   = {person.homeworldName}
+                                onEdit      = {editHandler}
+                                onToggleFav = {postFavorites}
+                                isFav       = {favorites.indexOf(person.id) > -1}
                             />;
                     })
                 }
@@ -148,7 +168,8 @@ function mapStateToProps(state) {
         currentPage:    state.currentPage,
         searchTerm:     state.searchTerm,
         editablePeople: state.editablePeople,
-        planets:        state.planets.map(p => ({ name: p.name, id: p.id }))
+        favorites:      state.favorites,
+        planets:        state.planets.map(p => ({ name: p.name, id: p.id })),
     };
 }
 
