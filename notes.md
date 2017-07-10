@@ -1,7 +1,5 @@
 Start Time: **Saturday morning**; End Time: **Sunday evening**;
-
 Took **15** hours to complete through **step 11** (the counter also serves as 'back' button)
-
 
 ### The good:
 * fun fun fun
@@ -17,5 +15,6 @@ Looking forward to some feedback on the code, regardles of the outcome of the in
 
 Thanks,
 
-
-Gabe
+Gabriel Cabrejas
+gabriel@cabrejas.net
+(919) 641-4726
