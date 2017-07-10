@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import activeView from './activeView';
 import currentPage from './currentPage';
 import editablePeople from './editablePeople';
 import favorites from './favorites';
@@ -8,6 +9,7 @@ import searchTerm from './searchTerm';
 
 
 export default combineReducers({
+    activeView,
     currentPage,
     editablePeople,
     favorites,

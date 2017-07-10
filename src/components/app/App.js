@@ -20,6 +20,7 @@ class App extends Component {
         this.saveHandler   = this.saveHandler.bind(this);
         this.cancelHandler = this.cancelHandler.bind(this);
         this.postFavorites = this.postFavorites.bind(this);
+        this.toggleView    = this.toggleView.bind(this);
     }
 
     componentWillMount() {
@@ -93,6 +94,10 @@ class App extends Component {
         });
     }
 
+    toggleView() {
+        this.props.dispatch({ type: 'ACTIVE_VIEW/TOGGLE' });
+    }
+
     render() {
         const {
             people,
@@ -100,6 +105,7 @@ class App extends Component {
             favorites,
             currentPage,
             editablePeople,
+            activeView,
         } = this.props;
 
         const {
@@ -110,10 +116,10 @@ class App extends Component {
             saveHandler,
             cancelHandler,
             postFavorites,
+            toggleView,
         } = this;
 
         return (
-
             <div className='content'>
                 <div className='logo'>
                     <img src={star} alt='star-logo' />
@@ -121,16 +127,18 @@ class App extends Component {
                     <img src={wars} alt='wars-logo' />
                 </div>
 
-                <SearchBar searchHandler={searchHandler} />
+                { activeView == 'main' && <SearchBar searchHandler={searchHandler} /> }
 
-                <FavCounter count={favorites.length}/>
-
-                <Paginator
-                    onNext      = {nextHandler}
-                    onPrev      = {prevHandler}
-                />
-
+                <FavCounter count={favorites.length} clickHandler={toggleView} />
                 {
+                    activeView == 'main' &&
+                    <Paginator
+                        onNext      = {nextHandler}
+                        onPrev      = {prevHandler}
+                    />
+                }
+                {
+                    activeView == 'main' &&
                     people.map(person => {
                         return editablePeople.indexOf(person.id) > -1
                         ?
@@ -172,6 +180,7 @@ function mapStateToProps(state) {
         searchTerm:     state.searchTerm,
         editablePeople: state.editablePeople,
         favorites:      state.favorites,
+        activeView:     state.activeView,
         planets:        state.planets.map(p => ({ name: p.name, id: p.id })),
     };
 }
