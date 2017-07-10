@@ -4,6 +4,7 @@ import Card from '../card/Card.js';
 import EditableCard from '../editable_card/EditableCard';
 import SearchBar from '../search_bar/SearchBar.js';
 import Paginator from '../paginator/Paginator';
+import FavCounter from '../fav_counter/FavCounter';
 import star from '../../images/star.svg';
 import wars from '../../images/wars.svg';
 import './App.css';
@@ -121,6 +122,8 @@ class App extends Component {
                 </div>
 
                 <SearchBar searchHandler={searchHandler} />
+
+                <FavCounter count={favorites.length}/>
 
                 <Paginator
                     onNext      = {nextHandler}
