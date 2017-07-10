@@ -5,6 +5,7 @@ import EditableCard from '../editable_card/EditableCard';
 import SearchBar from '../search_bar/SearchBar.js';
 import Paginator from '../paginator/Paginator';
 import FavCounter from '../fav_counter/FavCounter';
+import FavoritePeople from '../favorite_people/FavoritePeople';
 import star from '../../images/star.svg';
 import wars from '../../images/wars.svg';
 import './App.css';
@@ -96,6 +97,8 @@ class App extends Component {
 
     toggleView() {
         this.props.dispatch({ type: 'ACTIVE_VIEW/TOGGLE' });
+        this.props.dispatch({ type: 'SEARCH_TERM/RESET' });
+        this.props.dispatch({ type: 'PEOPLE/GET' }); // TO-DO: fix this shotgun
     }
 
     render() {
@@ -167,6 +170,9 @@ class App extends Component {
                                 isFav       = {favorites.indexOf(person.id) > -1}
                             />;
                     })
+                }
+                {
+                    activeView == 'favs' && <FavoritePeople />
                 }
             </div>
         );

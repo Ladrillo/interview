@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Card from '../card/Card.js';
 
 
 class FavoritePeople extends Component {
     componentWillMount() {
-        this.props.dispatch({ type: 'PEOPLE/GET_FAVORITES' });
+        this.props.dispatch({ type: 'FAVORITE_PEOPLE/GET' });
     }
 
     render() {
@@ -14,8 +15,14 @@ class FavoritePeople extends Component {
             currentPage,
         } = this.props;
 
+        {
+            if (! favoritePeople.length) {
+                return <Styled>You have no favorites.</Styled>;
+            }
+        }
+
         return (
-            <div>
+            <Styled transform>
             {
                 favoritePeople.map(person => {
                     return (
@@ -25,15 +32,22 @@ class FavoritePeople extends Component {
                             name        = {person.name}
                             image       = {person.image}
                             birthday    = {person.birth_year}
-                            homeworld   = {person.homeworldName}
                         />
                     );
                 })
             }
-            </div>
+            </Styled>
         );
     }
 }
+
+const Styled = styled.div`
+    transform-origin: top center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    transform: ${props => props.transform ? 'scale(0.5)' : 'scale(1)' };
+`;
 
 function mapStateToProps(state) {
     return {

@@ -8,20 +8,28 @@ export default function Card({ id, name, image, birthday, homeworld, onEdit, isF
     return (
         <div className='card'>
             <div className='card-content'>
-                <div className='card-name'>{name} <Heart on={isFav} toggle={() => onToggleFav(id)}/></div>
+                <div className='card-name'>
+                    {name} { onToggleFav && <Heart on={isFav} toggle={() => onToggleFav(id)}/> }
+                </div>
                 <img src={`http://localhost:3008/${image}`} alt='profile' />
                 <p>
                     <span>Birthday:</span>
                     <span>{birthday}</span>
                 </p>
-                <p>
-                    <span>Homeworld:</span>
-                    <span>{homeworld}</span>
-                </p>
+                {
+                    homeworld &&
+                    <p>
+                        <span>Homeworld:</span>
+                        <span>{homeworld}</span>
+                    </p>
+                }
             </div>
-            <div className='card-buttons'>
-                <StyledButton onClick={() => onEdit(id)}>edit</StyledButton>
-            </div>
+            {
+                onEdit &&
+                <div className='card-buttons'>
+                    <StyledButton onClick={() => onEdit(id)}>edit</StyledButton>
+                </div>
+            }
         </div>
     );
 }
