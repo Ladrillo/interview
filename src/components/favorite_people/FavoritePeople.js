@@ -42,6 +42,7 @@ class FavoritePeople extends Component {
 }
 
 const Styled = styled.div`
+    padding-top: 25px;
     transform-origin: top center;
     justify-content: center;
     display: flex;
