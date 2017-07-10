@@ -27,11 +27,11 @@ class FavoritePeople extends Component {
                 favoritePeople.map(person => {
                     return (
                         <Card
-                            key         = {person.id}
-                            id          = {person.id}
-                            name        = {person.name}
-                            image       = {person.image}
-                            birthday    = {person.birth_year}
+                            key      = {person.id}
+                            id       = {person.id}
+                            name     = {person.name}
+                            image    = {person.image}
+                            birthday = {person.birth_year}
                         />
                     );
                 })

@@ -12,10 +12,13 @@ export default function Card({ id, name, image, birthday, homeworld, onEdit, isF
                     {name} { onToggleFav && <Heart on={isFav} toggle={() => onToggleFav(id)}/> }
                 </div>
                 <img src={`http://localhost:3008/${image}`} alt='profile' />
-                <p>
-                    <span>Birthday:</span>
-                    <span>{birthday}</span>
-                </p>
+                {
+                    homeworld &&
+                    <p>
+                        <span>Birthday:</span>
+                        <span>{birthday}</span>
+                    </p>
+                }
                 {
                     homeworld &&
                     <p>
