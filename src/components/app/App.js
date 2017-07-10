@@ -99,8 +99,7 @@ class App extends Component {
         // TO-DO make this better...
         this.props.dispatch({ type: 'ACTIVE_VIEW/TOGGLE' });
         this.props.dispatch({ type: 'SEARCH_TERM/RESET' });
-        this.props.dispatch({ type: 'PEOPLE/GET' });
-        this.props.dispatch({type: 'CURRENT_PAGE/RESET'});
+        this.props.dispatch({ type: 'PEOPLE/GET', page: this.props.currentPage });
     }
 
     render() {
