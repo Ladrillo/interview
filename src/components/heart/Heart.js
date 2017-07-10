@@ -15,11 +15,11 @@ const Styled = styled.span`
     color: ${props => props.on ? '#FDF253' : '#222'};
     cursor: pointer;
     transform: scale(1);
-    transition: all 0.4s 0.02s ease-in-out;
+    transition: all 0.3s 0.02s ease-in-out;
 
     &:hover {
         color: #FDF253;
         transform: scale(1.2);
-        transition: all 0.4s 0.02s ease-in-out;
+        transition: all 0.3s 0.02s ease-in-out;
     }
 `;
