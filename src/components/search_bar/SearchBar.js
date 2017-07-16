@@ -16,15 +16,17 @@ export default class SearchBar extends Component {
     }
 
     componentDidMount() {
-        // we only want to AJAX after 250 milliseconds of 'radio silence'
-        const input = document.querySelector('.search-bar-input');
-        const { searchHandler } = this.props;
+        if (this.props.debounce !== false) {
+            // we only want to AJAX after 250 milliseconds of 'radio silence'
+            const input = document.querySelector('.search-bar-input');
+            const { searchHandler } = this.props;
 
-        const stream = Observable.fromEvent(input, 'input');
+            const stream = Observable.fromEvent(input, 'input');
 
-        stream
-            .debounceTime(250)
-            .subscribe(e => searchHandler(this.state.searchTerm));
+            stream
+                .debounceTime(250)
+                .subscribe(e => searchHandler(this.state.searchTerm));
+        }
     }
 
     onChange(event) {

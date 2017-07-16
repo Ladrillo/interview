@@ -1,0 +1,13 @@
+exports[`FavCounter renders correctly 1`] = `
+<div
+  className="fav-counter sc-bdVaJa bLjmXh"
+  onClick={[Function]}>
+  <span
+    className="fav-counter-heart">
+    ♡
+  </span>
+  <span>
+    32
+  </span>
+</div>
+`;

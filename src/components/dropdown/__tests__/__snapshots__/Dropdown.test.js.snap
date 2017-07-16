@@ -1,0 +1,14 @@
+exports[`Dropdown renders correctly 1`] = `
+<select
+  onChange={[Function]}
+  value={2}>
+  <option
+    value={1}>
+    foo
+  </option>
+  <option
+    value={2}>
+    bar
+  </option>
+</select>
+`;

@@ -1,0 +1,50 @@
+exports[`EditableCard renders correctly 1`] = `
+<div
+  className="card">
+  <div
+    className="card-content">
+    <div
+      className="card-name">
+      <input
+        className="name"
+        onChange={[Function]}
+        value="Luke Skywalker" />
+    </div>
+    <img
+      alt="profile"
+      src="http://localhost:3008/luke_skywalker.jpg" />
+    <p>
+      <span>
+        Birthday:
+      </span>
+      <input
+        className="birthday"
+        onChange={[Function]}
+        value="XXXOOO" />
+    </p>
+    <p>
+      <span>
+        Homeworld:
+      </span>
+      <span>
+        <select
+          onChange={[Function]}
+          value={1} />
+      </span>
+    </p>
+  </div>
+  <div
+    className="card-buttons">
+    <div
+      className="save-button sc-bdVaJa Tteup"
+      onClick={[Function]}>
+      save
+    </div>
+    <div
+      className="cancel-button sc-bdVaJa Tteup"
+      onClick={[Function]}>
+      cancel
+    </div>
+  </div>
+</div>
+`;

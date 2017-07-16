@@ -1,0 +1,19 @@
+exports[`FavoritePeople renders correctly 1`] = `
+<div
+  className="sc-htpNat lcAGFr"
+  transform={true}>
+  <div
+    className="card">
+    <div
+      className="card-content">
+      <div
+        className="card-name">
+         
+      </div>
+      <img
+        alt="profile"
+        src="http://localhost:3008/undefined" />
+    </div>
+  </div>
+</div>
+`;

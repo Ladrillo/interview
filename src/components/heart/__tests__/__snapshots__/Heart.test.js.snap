@@ -1,0 +1,7 @@
+exports[`Heart renders correctly 1`] = `
+<span
+  className="sc-bdVaJa fOUEGf"
+  onClick={[Function]}>
+  ♡
+</span>
+`;

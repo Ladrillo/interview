@@ -1,0 +1,10 @@
+exports[`SearchBar renders correctly 1`] = `
+<div
+  className="search-bar">
+  <input
+    className="search-bar-input"
+    onChange={[Function]}
+    placeholder="Search Your Destiny"
+    value="" />
+</div>
+`;

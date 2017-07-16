@@ -1,0 +1,45 @@
+exports[`Card renders correctly 1`] = `
+<div
+  className="card">
+  <div
+    className="card-content">
+    <div
+      className="card-name">
+      Luke Skywalker
+       
+      <span
+        className="sc-bwzfXH fYeCzG"
+        onClick={[Function]}>
+        ♡
+      </span>
+    </div>
+    <img
+      alt="profile"
+      src="http://localhost:3008/undefined" />
+    <p>
+      <span>
+        Birthday:
+      </span>
+      <span>
+        AAA000X
+      </span>
+    </p>
+    <p>
+      <span>
+        Homeworld:
+      </span>
+      <span>
+        Tatooine
+      </span>
+    </p>
+  </div>
+  <div
+    className="card-buttons">
+    <div
+      className="sc-bdVaJa Tteup"
+      onClick={[Function]}>
+      edit
+    </div>
+  </div>
+</div>
+`;
