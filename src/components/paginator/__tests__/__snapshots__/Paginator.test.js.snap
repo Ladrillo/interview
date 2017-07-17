@@ -1,15 +1,4 @@
 exports[`Paginator renders correctly 1`] = `
 <div
-  className="paginator sc-bdVaJa HJElk">
-  <div
-    className="paginator-button prev"
-    onClick={[Function]}>
-    Prev
-  </div>
-  <div
-    className="paginator-button next"
-    onClick={[Function]}>
-    Next
-  </div>
-</div>
+  className="paginator sc-bdVaJa HJElk" />
 `;

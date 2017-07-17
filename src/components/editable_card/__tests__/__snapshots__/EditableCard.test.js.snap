@@ -7,6 +7,7 @@ exports[`EditableCard renders correctly 1`] = `
       className="card-name">
       <input
         className="name"
+        name="name"
         onChange={[Function]}
         value="Luke Skywalker" />
     </div>
@@ -19,6 +20,7 @@ exports[`EditableCard renders correctly 1`] = `
       </span>
       <input
         className="birthday"
+        name="birthday"
         onChange={[Function]}
         value="XXXOOO" />
     </p>
@@ -28,6 +30,8 @@ exports[`EditableCard renders correctly 1`] = `
       </span>
       <span>
         <select
+          className="homeworld"
+          name="homeworld"
           onChange={[Function]}
           value={1} />
       </span>

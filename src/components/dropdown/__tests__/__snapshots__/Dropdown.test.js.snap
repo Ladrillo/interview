@@ -1,5 +1,7 @@
 exports[`Dropdown renders correctly 1`] = `
 <select
+  className={undefined}
+  name={undefined}
   onChange={[Function]}
   value={2}>
   <option
