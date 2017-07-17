@@ -14,11 +14,8 @@ export default class EditableCard extends Component {
             homeworld: this.props.homeworldId,
         };
 
-        this.save            = this.save.bind(this);
-        this.cancel          = this.cancel.bind(this);
-        this.changeName      = this.changeName.bind(this);
-        this.changeBirthday  = this.changeBirthday.bind(this);
-        this.changeHomeworld = this.changeHomeworld.bind(this);
+        this.save        = this.save.bind(this);
+        this.changeValue = this.changeValue.bind(this);
     }
 
     save(e) {
@@ -37,49 +34,45 @@ export default class EditableCard extends Component {
          this.props.onCancel(this.props.id);
     }
 
-    changeName(e) {
-        this.setState({ name: e.target.value });
-    }
-
-    changeBirthday(e) {
-        this.setState({ birthday: e.target.value });
-    }
-
-    changeHomeworld(e) {
-        this.setState({ homeworld: e.target.value });
+    changeValue(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
-        const { changeName, changeBirthday, changeHomeworld, save, cancel } = this;
-        const { image, homeworldName, homeworldId, planets }                = this.props;
-        const { name, birthday, homeworld }                                 = this.state;
+        const { changeValue, save, cancel }                  = this;
+        const { image, homeworldName, homeworldId, planets } = this.props;
+        const { name, birthday, homeworld }                  = this.state;
 
         return (
             <div className='card'>
                 <div className='card-content'>
                     <div className='card-name'>
                         <input
+                            name      = 'name'
                             value     = {name}
                             className = 'name'
-                            onChange  = {changeName}
+                            onChange  = {changeValue}
                         />
                     </div>
                     <img src={`http://localhost:3008/${image}`} alt='profile' />
                     <p>
                         <span>Birthday:</span>
                         <input
+                            name      = 'birthday'
                             value     = {birthday}
                             className = 'birthday'
-                            onChange  = {changeBirthday}
+                            onChange  = {changeValue}
                         />
                     </p>
                     <p>
                         <span>Homeworld:</span>
                         <span>
                             <Dropdown
+                                name          = 'homeworld'
                                 options       = {planets}
                                 value         = {homeworld}
-                                changeHandler = {changeHomeworld}
+                                changeHandler = {changeValue}
+                                className     = 'homeworld'
                             />
                         </span>
                     </p>
