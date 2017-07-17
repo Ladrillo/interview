@@ -110,6 +110,7 @@ class App extends Component {
             currentPage,
             editablePeople,
             activeView,
+            lastPage,
         } = this.props;
 
         const {
@@ -139,6 +140,8 @@ class App extends Component {
                     <Paginator
                         onNext      = {nextHandler}
                         onPrev      = {prevHandler}
+                        lastPage    = {lastPage}
+                        currentPage = {currentPage}
                     />
                 }
                 {
@@ -188,6 +191,7 @@ function mapStateToProps(state) {
         editablePeople: state.editablePeople,
         favorites:      state.favorites,
         activeView:     state.activeView,
+        lastPage:       state.lastPage,
         planets:        state.planets.map(p => ({ name: p.name, id: p.id })),
     };
 }

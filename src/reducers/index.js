@@ -7,6 +7,7 @@ import favorites from './favorites';
 import people from './people';
 import planets from './planets';
 import searchTerm from './searchTerm';
+import lastPage from './lastPage';
 
 
 export default combineReducers({
@@ -18,4 +19,5 @@ export default combineReducers({
     people,
     planets,
     searchTerm,
+    lastPage,
 });
